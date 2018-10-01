@@ -12,7 +12,7 @@ ui <- fluidPage(
       
       fileInput(inputId = "gsea.data", label = "GSEA Report (must be .csv format)"),
 
-      print(strong("2) Specify if up/downregulated & cutoff:")),
+      print(strong("2) Specify directionality & cutoff:")),
       
       checkboxInput(inputId = "below.zero", label = "NESs < 0?", value = FALSE),
       
