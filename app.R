@@ -14,7 +14,7 @@ ui <- fluidPage(
 
       print(strong("2) Specify directionality & cutoff:")),
       
-      checkboxInput(inputId = "below.zero", label = "NESs < 0?", value = FALSE),
+      checkboxInput(inputId = "below.zero", label = "NES < 0?", value = FALSE),
       
       numericInput(inputId = "NES.cut", label = "NES Cutoff", value = 1.5),
       br(),
