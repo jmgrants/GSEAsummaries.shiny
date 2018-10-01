@@ -85,7 +85,7 @@ server <- function(input, output, session) {
       dat.table() %>%
         setNames(c("name", "msigdb", "details", "size", "ES", "NES", "pval", "pfdr", "pfwer", "rank", "leading_edge")) %>%
         filter(NES < input$NES.cut) %>% 
-        ggplot(aes(reorder(name, NES), NES, fill = pfdr)) +
+        ggplot(aes(reorder(name, -NES), NES, fill = pfdr)) +
         geom_col() +
         scale_fill_gradient(low = "blue4", high = "slategray1") +
         labs(x = "", fill = "FDR") +
@@ -119,7 +119,7 @@ server <- function(input, output, session) {
       dat.table() %>%
         setNames(c("name", "msigdb", "details", "size", "ES", "NES", "pval", "pfdr", "pfwer", "rank", "leading_edge")) %>%
         filter(NES < input$NES.cut) %>% 
-        ggplot(aes(reorder(name, NES), NES, fill = pfdr)) +
+        ggplot(aes(reorder(name, -NES), NES, fill = pfdr)) +
         geom_col() +
         scale_fill_gradient(low = "blue4", high = "slategray1") +
         labs(x = "", fill = "FDR") +
