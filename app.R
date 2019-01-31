@@ -21,11 +21,11 @@ ui <- fluidPage(
       
       print(strong("3) Manipulate downloaded plot:")),
 
-      numericInput(inputId = "text.size", label = "Text Size", value = 14),
+      numericInput(inputId = "text.size", label = "Text Size", value = 4),
       
       numericInput(inputId = "width", label = "Width of Downloaded Plot (in.)", value = 8),
       
-      numericInput(inputId = "height", label = "Height of Downloaded Plot (in.)", value = 4),
+      numericInput(inputId = "height", label = "Height of Downloaded Plot (in.)", value = 2),
       
       downloadButton("download.plot", "Download Plot")
     ),
@@ -40,7 +40,7 @@ ui <- fluidPage(
       br(),
       
       # NES/FDR plot based on user-defined cutoff
-      print(strong("NES & FDR of deregulated gene sets surpassing cutoff:")),
+      print(strong("NES & p-adj (method: FDR control) of deregulated gene sets surpassing cutoff:")),
       br(), br(),
       plotOutput("plot.data"),
       br(), br(), br(), br()
@@ -75,7 +75,7 @@ server <- function(input, output, session) {
       ggplot(aes(reorder(name, NES), NES, fill = pfdr)) +
       geom_col() +
       scale_fill_gradient(low = "blue4", high = "slategray1") +
-      labs(x = "", fill = "FDR") +
+      labs(x = "", fill = "p-adj") +
       coord_flip() +
       theme_bw(base_size = input$text.size) +
       theme(axis.text = element_text(colour = "black"),
@@ -88,7 +88,7 @@ server <- function(input, output, session) {
         ggplot(aes(reorder(name, -NES), NES, fill = pfdr)) +
         geom_col() +
         scale_fill_gradient(low = "blue4", high = "slategray1") +
-        labs(x = "", fill = "FDR") +
+        labs(x = "", fill = "p-adj") +
         coord_flip() +
         theme_bw(base_size = input$text.size) +
         theme(axis.text = element_text(colour = "black"),
@@ -109,7 +109,7 @@ server <- function(input, output, session) {
         ggplot(aes(reorder(name, NES), NES, fill = pfdr)) +
         geom_col() +
         scale_fill_gradient(low = "blue4", high = "slategray1") +
-        labs(x = "", fill = "FDR") +
+        labs(x = "", fill = "p-adj") +
         coord_flip() +
         theme_bw(base_size = input$text.size) +
         theme(axis.text = element_text(colour = "black"),
@@ -122,7 +122,7 @@ server <- function(input, output, session) {
         ggplot(aes(reorder(name, -NES), NES, fill = pfdr)) +
         geom_col() +
         scale_fill_gradient(low = "blue4", high = "slategray1") +
-        labs(x = "", fill = "FDR") +
+        labs(x = "", fill = "p-adj") +
         coord_flip() +
         theme_bw(base_size = input$text.size) +
         theme(axis.text = element_text(colour = "black"),
